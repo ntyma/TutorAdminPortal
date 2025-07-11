@@ -16,6 +16,33 @@
   z-index: 1000;
 }
 
+.header-logo-image {
+  width: 100px;
+}
+
+.button-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 1rem;
+  padding: 2rem;
+}
+
+.grid-button {
+  padding: 1rem;
+  background-color:#4dd8ff;
+  color: black;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.grid-button-hover{
+  background-color:#0b98be;
+}
+
+
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
