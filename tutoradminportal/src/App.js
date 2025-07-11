@@ -1,57 +1,40 @@
 import React, { useState } from 'react';
+import {BrowserRouter as Router, Routes, Route, Link} from 'react-router-dom';  
 import './App.css';
 
+import HomePage from './pages/HomePage';
+import TutorForm from './pages/TutorForm';
+import TutorList from  './pages/TutorList';
+import Schedule from './pages/Schedule';
+
+import logo from "./images/logos/TAP_logo.png";
+
 function App() {
-  const [users, setUsers] = useState([]);
-  const [form, setForm] = useState({ firstName: '', lastName: '', email: '' });
+  
 
-  const handleChange = (e) => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
-
-  const handleSubmit = () => {
-    setUsers([...users, { ...form, id: Date.now() }]);
-    setForm({ firstName: '', lastName: '', email: '' });
-  };
-
+  
   return (
-    <>
-    <div className="header-bar">
-      <h1>TAP</h1>
-    </div>
-    <div style={{ padding: '2rem' }}>
-      <h1>New Tutor Form</h1>
-      <input
-        name="firstName"
-        placeholder="First Name"
-        value={form.firstNameame}
-        onChange={handleChange}
-        style={{ margin: '0.5rem' }}
-      />
-      <input
-        name="lastName"
-        placeholder="Last Name"
-        value={form.lastNameame}
-        onChange={handleChange}
-        style={{ margin: '0.5rem' }}
-      />
-      <input
-        name="email"
-        placeholder="Email"
-        value={form.email}
-        onChange={handleChange}
-        style={{ margin: '0.5rem' }}
-      />
-      <button onClick={handleSubmit}>Add User</button>
-
-      <h2>User List</h2>
-      <ul>
-        {users.map((user) => (
-          <li key={user.id}>{user.firstName} {user.lastName} ({user.email})</li>
-        ))}
-      </ul>
-    </div>
-    </>
+    <Router>
+      <div className="header-bar">
+        <div className="header-logo-image">
+          <Link to="/">
+            <img src={logo} alt="TAP" width="100"/>
+          </Link>
+        </div>
+        {/* <nav>
+          <Link to="/"> Home </Link>
+          <Link to="/new-tutor">New Tutor</Link>
+        </nav> */}
+      </div>
+      <div style={{ padding: '2rem', marginTop: '80px' }}>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/new-tutor" element={<TutorForm />} />
+          <Route path="/tutor-list" element={<TutorList />} />
+          <Route path="/schedule" element={<Schedule />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
