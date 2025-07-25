@@ -8,6 +8,10 @@ app.use(bodyParser.urlencoded({extended: false}));
 app.use(bodyParser.json());
 app.use(cors())
 
+app.listen(3001, () => {
+    console.log("listening");
+})
+
 var db  = mysql.createPool({
   connectionLimit : 10,
   host            : 'localhost',
@@ -30,6 +34,13 @@ app.post('/tutors', (req, res) => {
   })
 })
 
-app.listen(8081, () => {
-    console.log("listening");
-})
+app.get('/tutors', (req, res) => {
+  db.query("SELECT first_name, last_name FROM tutors", (err, result) => {
+    if (err) {
+      console.log(err)
+    } else {
+      res.json(result);
+    }
+  })
+});
+

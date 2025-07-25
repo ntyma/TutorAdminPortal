@@ -10,7 +10,7 @@ function TutorForm() {
     };
 
     const handleSubmit = () => {
-        axios.post('http://localhost:8081/tutors', {firstName: form.firstName, lastName: form.lastName, email: form.email, phoneNum: form.phoneNum})
+        axios.post('/tutors', {firstName: form.firstName, lastName: form.lastName, email: form.email, phoneNum: form.phoneNum})
       .then((data) => {
         console.log(data)
         setUsers([...users, { ...form, id: Date.now() }]);
